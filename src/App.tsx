@@ -3,9 +3,9 @@ import './App.css'
 import { Layer, Circle, Stage, Image, Rect, Line } from "react-konva"
 import { LineConfig } from "konva/lib/shapes/Line";
 import * as R from "rambda";
-import { Button,Box } from "@mui/material";
+import { Button, Box } from "@mui/material";
 import useImage from 'use-image';
-import { ImagePreview,getImageURL } from './ImagePreview';
+import { ImagePreview } from './ImagePreview';
 
 function App() {
 
@@ -16,10 +16,10 @@ function App() {
   const [points, setPoints] = React.useState<Point[]>([]);
 
   const getDistancePoints = (p1: Point, p2: Point) => {
-   const a = p1.x - p2.x;
-   const b = p1.y - p2.y;
+    const a = p1.x - p2.x;
+    const b = p1.y - p2.y;
 
-   return Math.sqrt(a * a + b * b);
+    return Math.sqrt(a * a + b * b);
   };
 
   const pointsToFlat = (points: Point[]) => R.flatten<number>(points.map((d) => [d.x, d.y]));
@@ -27,9 +27,9 @@ function App() {
 
   // 生成完了ハンドラ
   const onFinish = () => {
-    if (points.length > 1){
+    if (points.length > 1) {
       setIsLockDrag(true);
-    }else if (points.length = 1){
+    } else if (points.length = 1) {
       setPoints([]);
     }
   };
@@ -40,17 +40,14 @@ function App() {
   };
 
   const [file, setFile] = React.useState<File | null>(null)
-  // const [url, setUrl] = React.useState<string | undefined>(undefined);
-  // let image = useImage('https://placehold.jp/150x150.png')[0]
 
   const changeFileHandler = React.useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
-      if (evt.currentTarget?.files && evt.currentTarget.files[0]) {
-        setFile(evt.currentTarget.files[0]);
-        // setUrl(getImageURL(evt.currentTarget.files[0]));
-      }
+    if (evt.currentTarget?.files && evt.currentTarget.files[0]) {
+      setFile(evt.currentTarget.files[0]);
+    }
   }, []);
   const resetHandler = React.useCallback(() => {
-      setFile(null);
+    setFile(null);
   }, []);
 
   const createLine = () => (
@@ -58,7 +55,7 @@ function App() {
       width={WIDTH}
       height={HEIGHT}
       onMouseDown={(e) => {
-        if (points.length > 1 && isLockDrag){
+        if (points.length > 1 && isLockDrag) {
           return;
         }
         const newPoint = e.target.getRelativePointerPosition();
@@ -80,28 +77,13 @@ function App() {
       onMouseUp={onFinish}>
       <Layer>
         <Line
-            stroke={"#FF1DCE"}
-            lineJoin={"bevel"}
-            strokeWidth={5}
-            points={pointsToFlat(points)} strokeScaleEnabled={false}></Line>
+          stroke={"#FF1DCE"}
+          lineJoin={"bevel"}
+          strokeWidth={5}
+          points={pointsToFlat(points)} strokeScaleEnabled={false}></Line>
       </Layer>
     </Stage>
   );
-
-  // const createImage = (aaa:  HTMLImageElement | undefined) => (
-  //   <Stage
-  //     width={WIDTH}
-  //     height={HEIGHT}>
-  //     <Layer>
-  //         <Rect
-  //           width={WIDTH}
-  //           height={HEIGHT}
-  //           fillPatternRepeat="no-repeat"
-  //           draggable={false}
-  //           fillPatternImage={aaa}></Rect>
-  //     </Layer>
-  //   </Stage>
-  // );
 
   return (
     <div className="App">
@@ -109,33 +91,33 @@ function App() {
         <input type="file" onChange={changeFileHandler} />
         {file != undefined && (
           <div>
-            <Button variant="contained" disabled={!file} onClick={resetHandler}>
-              やり直すの巻
+            <Button variant="contained" onClick={resetHandler}>
+              画像削除
             </Button>
             <Box
               position={"relative"}
               width={WIDTH}
               height={HEIGHT}
-              // text-align={"center"}
-              >
+            // text-align={"center"}
+            >
               <ImagePreview
                 file={file}
                 width={WIDTH}
                 position={"absolute"}
-                top ={0}
-                bottom= {0}
-                left= {0}
+                top={0}
+                bottom={0}
+                left={0}
                 margin={"auto"}
-                right ={0} />
+                right={0} />
               <Box
                 position={"absolute"}
-                top ={0}
-                left= {0}>
-                  {createLine()}
+                top={0}
+                left={0}>
+                {createLine()}
               </Box>
             </Box>
             <Button variant="contained" disabled={points.length < 2} onClick={onDelete}>
-              やり直すの巻
+              ライン削除
             </Button>
           </div>
         )}
