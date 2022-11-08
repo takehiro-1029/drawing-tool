@@ -47,6 +47,8 @@ function App() {
     }
   }, []);
   const resetHandler = React.useCallback(() => {
+    const element = document.getElementById("inputFile") as HTMLInputElement;
+    element.value = "";
     setFile(null);
   }, []);
 
@@ -88,7 +90,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <input type="file" onChange={changeFileHandler} />
+        <input type="file" id="inputFile" onChange={changeFileHandler} />
         {file != undefined && (
           <div>
             <Button variant="contained" onClick={resetHandler}>
