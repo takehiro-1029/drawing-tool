@@ -6,6 +6,7 @@ import * as R from "rambda";
 import { Button, Box } from "@mui/material";
 import useImage from 'use-image';
 import { ImagePreview } from './ImagePreview';
+import html2canvas from "html2canvas";
 
 function App() {
 
@@ -87,6 +88,30 @@ function App() {
     </Stage>
   );
 
+  const saveImagePNG = (uri: string) => {
+    const downloadLink = document.createElement("a");
+    if (typeof downloadLink.download === "string") {
+      downloadLink.href = uri;
+      downloadLink.download = "component.png";
+      // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
+      document.body.appendChild(downloadLink);
+      // ダウンロードリンクが設定された a タグをクリック
+      downloadLink.click();
+      // Firefox 対策で追加したリンクを削除しておく
+      document.body.removeChild(downloadLink);
+    } else {
+      window.open(uri);
+    }
+  }
+
+  const onClickExport = () => {
+    const target = document.getElementById("target-component");
+    html2canvas(target!).then(canvas => {
+      const targetImgUri = canvas.toDataURL("img/png");
+      saveImagePNG(targetImgUri);
+    })
+  };
+
   return (
     <div className="App">
       <div>
@@ -96,11 +121,15 @@ function App() {
             <Button variant="contained" onClick={resetHandler}>
               画像削除
             </Button>
+            <Button variant="contained" onClick={onClickExport}>
+              PNG出力
+            </Button>
             <Box
               position={"relative"}
               width={WIDTH}
               height={HEIGHT}
               text-align={"center"}
+              id={"target-component"}
             >
               <ImagePreview file={file} />
               <Box
