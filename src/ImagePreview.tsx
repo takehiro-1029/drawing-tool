@@ -2,16 +2,9 @@ import React from 'react';
 
 type ImagePreviewProps = {
   file: File | null
-  width: string | number | undefined
-  position: string | number | undefined
-  margin: string | number | undefined
-  top: string | number | undefined
-  bottom: string | number | undefined
-  left: string | number | undefined
-  right: string | number | undefined
 };
 
-export const ImagePreview: React.FC<ImagePreviewProps> = ({ file, ...props }) => {
+export const ImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
   const [url, setUrl] = React.useState<string>('');
   const isLoading = file && !url;
 
@@ -22,9 +15,11 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ file, ...props }) =>
 
     let reader: FileReader | null = new FileReader();
     reader.onloadend = () => {
-      const res = reader!.result;
-      if (res && typeof res === 'string') {
-        setUrl(res);
+      if (reader != null) {
+        const res = reader!.result;
+        if (res && typeof res === 'string') {
+          setUrl(res);
+        }
       }
     };
     reader.readAsDataURL(file);
@@ -38,7 +33,18 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ file, ...props }) =>
     isLoading ? (
       <div />
     ) : (
-      <img src={url} alt={file.name} {...props} />
+      <img
+        src={url}
+        alt={file.name}
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          margin: "auto",
+          width: 500,
+        }} />
     )
   ) : null;
 };

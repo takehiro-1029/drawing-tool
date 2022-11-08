@@ -100,17 +100,9 @@ function App() {
               position={"relative"}
               width={WIDTH}
               height={HEIGHT}
-            // text-align={"center"}
+              text-align={"center"}
             >
-              <ImagePreview
-                file={file}
-                width={WIDTH}
-                position={"absolute"}
-                top={0}
-                bottom={0}
-                left={0}
-                margin={"auto"}
-                right={0} />
+              <ImagePreview file={file} />
               <Box
                 position={"absolute"}
                 top={0}
