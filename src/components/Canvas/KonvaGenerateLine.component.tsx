@@ -2,7 +2,7 @@ import React, { useImperativeHandle, Ref, useRef } from "react"
 import { Layer, Stage, Line, StageProps } from "react-konva"
 import * as R from "rambda";
 import { Box } from "@mui/material";
-import { Point } from "../../interfaces/Geom.interface";
+import { Point } from "~/interfaces/Geom.interface";
 
 const POINT_DISTANCE_FREEHAND = 30;
 
