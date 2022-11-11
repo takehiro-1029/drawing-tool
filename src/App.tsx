@@ -1,43 +1,17 @@
-import React from "react"
+import React, { useRef } from "react"
 import './App.css'
-import { Layer, Circle, Stage, Image, Rect, Line } from "react-konva"
-import { LineConfig } from "konva/lib/shapes/Line";
-import * as R from "rambda";
 import { Button, Box } from "@mui/material";
-import useImage from 'use-image';
+import { KonvaGenerateLine } from "./components/Canvas/KonvaGenerateLine.component";
 import { ImagePreview } from './ImagePreview';
 import html2canvas from "html2canvas";
+import { IMAGE_CANVAS_SIZE } from "./constants/image.constant";
 
 function App() {
 
-  const POINT_DISTANCE_FREEHAND = 30;
-  const WIDTH = 500;
-  const HEIGHT = 500;
-  type Point = { x: number; y: number };
-  const [points, setPoints] = React.useState<Point[]>([]);
-
-  const getDistancePoints = (p1: Point, p2: Point) => {
-    const a = p1.x - p2.x;
-    const b = p1.y - p2.y;
-
-    return Math.sqrt(a * a + b * b);
-  };
-
-  const pointsToFlat = (points: Point[]) => R.flatten<number>(points.map((d) => [d.x, d.y]));
-  const [isLockDrag, setIsLockDrag] = React.useState(false);
-
-  // 生成完了ハンドラ
-  const onFinish = () => {
-    if (points.length > 1) {
-      setIsLockDrag(true);
-    } else if (points.length = 1) {
-      setPoints([]);
-    }
-  };
-
+  const childRef = useRef();
   const onDelete = () => {
-    setIsLockDrag(false);
-    setPoints([]);
+    // @ts-ignore
+    childRef.current.deletePoints()
   };
 
   const [file, setFile] = React.useState<File | null>(null)
@@ -52,41 +26,6 @@ function App() {
     element.value = "";
     setFile(null);
   }, []);
-
-  const createLine = () => (
-    <Stage
-      width={WIDTH}
-      height={HEIGHT}
-      onMouseDown={(e) => {
-        if (points.length > 1 && isLockDrag) {
-          return;
-        }
-        const newPoint = e.target.getRelativePointerPosition();
-        setPoints([newPoint]);
-      }}
-      onMouseMove={(e) => {
-        const isStage = e.target === e.target.getStage();
-        const lastPoint = R.last(points);
-
-        if (isLockDrag || !isStage || !lastPoint) {
-          return;
-        }
-
-        const newPoint = e.target.getRelativePointerPosition();
-        if (getDistancePoints(newPoint, lastPoint) > POINT_DISTANCE_FREEHAND) {
-          setPoints([...points, newPoint]);
-        }
-      }}
-      onMouseUp={onFinish}>
-      <Layer>
-        <Line
-          stroke={"#FF1DCE"}
-          lineJoin={"bevel"}
-          strokeWidth={5}
-          points={pointsToFlat(points)} strokeScaleEnabled={false}></Line>
-      </Layer>
-    </Stage>
-  );
 
   const saveImagePNG = (uri: string) => {
     const downloadLink = document.createElement("a");
@@ -126,20 +65,22 @@ function App() {
             </Button>
             <Box
               position={"relative"}
-              width={WIDTH}
-              height={HEIGHT}
+              width={IMAGE_CANVAS_SIZE.width}
+              height={IMAGE_CANVAS_SIZE.height}
               text-align={"center"}
               id={"target-component"}
             >
               <ImagePreview file={file} />
-              <Box
-                position={"absolute"}
-                top={0}
-                left={0}>
-                {createLine()}
-              </Box>
+              <KonvaGenerateLine
+                stageProps={{
+                  width: IMAGE_CANVAS_SIZE.width,
+                  height: IMAGE_CANVAS_SIZE.height
+                }}
+                // @ts-ignore
+                ref={childRef}
+              />
             </Box>
-            <Button variant="contained" disabled={points.length < 2} onClick={onDelete}>
+            <Button variant="contained" onClick={onDelete}>
               ライン削除
             </Button>
           </div>
