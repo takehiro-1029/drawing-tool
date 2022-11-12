@@ -1,10 +1,9 @@
 import React, { useRef } from "react"
-import './App.css'
 import { Button, Box } from "@mui/material";
-import { KonvaGenerateLine } from "./components/Canvas/KonvaGenerateLine.component";
-import { ImagePreview } from './ImagePreview';
 import html2canvas from "html2canvas";
-import { IMAGE_CANVAS_SIZE } from "./constants/image.constant";
+import { KonvaGenerateLine } from "~/components/Canvas/KonvaGenerateLine.component";
+import { ImagePreview } from '~/components/Preview/ImagePreview.component';
+import { IMAGE_CANVAS_SIZE } from "~/constants/image.constant";
 
 function App() {
 
