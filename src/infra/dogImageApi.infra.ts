@@ -1,11 +1,13 @@
 import useSWR from "swr";
 import axios from "axios";
 
+export const baseurl = "https://dog.ceo/api/breeds/image/random"
+
 // https://stackoverflow.com/questions/63453491/how-to-export-axios-create-in-typescript
 const client = axios.create({
-    baseURL: "https://dog.ceo/api/breeds/image/random",
+    baseURL: baseurl,
     headers: {'Content-Type': 'application/json'},
-  });
+});
 
   /** 画像取得 */
 export type GetDogImageRes = {
