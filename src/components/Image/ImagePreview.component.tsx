@@ -1,10 +1,12 @@
 import React from 'react';
+import { Box } from "@mui/material";
+import { useDogImage } from "~/infra/dogImageApi.infra";
 
 type ImagePreviewProps = {
   file: File | null
 };
 
-export const ImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
+export const FileImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
   const [url, setUrl] = React.useState<string>('');
   const isLoading = file && !url;
 
@@ -49,3 +51,12 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ file }) => {
   ) : null;
 };
 
+export const DogImagePreview: React.FC = () => {
+  const { dogImageURL } = useDogImage();
+
+  return (
+    <Box>
+      {dogImageURL != undefined && <img src={dogImageURL} style={{ width: 500 }} />}
+    </Box>
+  )
+};
