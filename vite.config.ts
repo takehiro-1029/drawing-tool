@@ -7,6 +7,7 @@ export default defineConfig({
     port: 1234,
     open: true,
   },
+  envDir: "./.envs",
   resolve: {
     alias: {
       // https://qiita.com/koichi0909/items/648d1cfb415d16638509
