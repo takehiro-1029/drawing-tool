@@ -1,4 +1,4 @@
-import { Size } from "../interfaces/Geom.interface";
+import { Size } from "~/interfaces/Geom.interface";
 
 export class SizeModel {
   private d: Size;
