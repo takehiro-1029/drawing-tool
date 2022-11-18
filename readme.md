@@ -13,8 +13,7 @@ yarn install
 
 ## vscodeセットアップ
 
-* `eslint` とか `prettier`
-* `ts-importer` もおすすめ
+* `eslint`,`prettier`,`TypeScript Importer`
 
 ## コマンド
 
@@ -22,19 +21,30 @@ yarn install
 # develop
 yarn dev
 
+# develop with mock api
+yarn dev-mock
+
 # build
 yarn build
+
+# lunch storybook
+yarn storybook
 ```
+[storybook:参考](https://stackoverflow.com/questions/71765316/how-to-set-storybook-to-run-with-different-node-version)
 
 # 2.主要パッケージ
 
 * [vite](https://ja.vitejs.dev/)・・・フロントエンド（環境）ツール
 * [React](https://ja.reactjs.org/)・・・データ駆動UIライブラリ
 * [MUI](https://mui.com/)・・・コンポーネントフレームワーク
+* [swr](https://swr.vercel.app/ja)・・・キャッシュhooks
 * [axios](https://axios-http.com/)・・・httpクライアント
+* [swr](https://mswjs.io/)・・・APIモック
+* [story-book](https://storybook.js.org/)・・・コンポーネントのカタログ化
 
 
 # 3.ディレクトリ
+* [デザインパターン](https://zenn.dev/morinokami/books/learning-patterns-1/viewer/presentational-container-pattern)・・・コンテナ・プレゼンテーションパターン
 
 `src` 配下
 
@@ -46,7 +56,6 @@ yarn build
 ├── infra/              apiやローカルストレージなど外部アクセス
 ├── interfaces/         インターフェイス定義
 ├── models/             ドメインモデル
-├── schemas/            スキーマ定義
 ├── types/              型定義ファイル
 └── utils/              ユーティリティ
 ```
@@ -67,7 +76,11 @@ yarn build
 * エディタで、現在開いているファイルが、どのレイヤーのモジュールなのかわかりやすい
   * `api/user.ts` と `model/user.ts` があった場合など、タブの表示上は「user.ts」になり、パッと見でややこしい
 
+# 4.テスト
 
+## unit-test
+* `vitest` を利用する
+* utilsやmodel周り、その他必要に応じて書く
 ## 参考
 
 https://blog.cybozu.io/entry/2022/08/29/110000
