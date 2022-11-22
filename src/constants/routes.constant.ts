@@ -10,6 +10,9 @@ export const routePathMap = {
    // DRAW
   show: { path: "/show" },
 
+   // SERVER SENT EVENT
+  server_sent_event: { path: "/sse" },
+
 } as const;
 
 export type RoutesName = keyof typeof routePathMap;

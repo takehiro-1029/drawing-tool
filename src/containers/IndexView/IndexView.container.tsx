@@ -13,6 +13,9 @@ const IndexView: React.FC = () => {
   const transDogImageView = () => {
     nav(routePathMap.show.path, { replace: true });
   }
+  const transServerSentEventView = () => {
+    nav(routePathMap.server_sent_event.path, { replace: true });
+  }
 
   return (
     <Box>
@@ -27,6 +30,11 @@ const IndexView: React.FC = () => {
       <Box>
         <Button variant="contained" onClick={transDogImageView}>
           show dog image
+        </Button>
+      </Box>
+      <Box>
+        <Button variant="contained" onClick={transServerSentEventView}>
+          server sent event
         </Button>
       </Box>
     </Box>
