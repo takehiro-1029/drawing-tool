@@ -37,11 +37,14 @@ yarn storybook
 * [vite](https://ja.vitejs.dev/)・・・フロントエンド（環境）ツール
 * [React](https://ja.reactjs.org/)・・・データ駆動UIライブラリ
 * [MUI](https://mui.com/)・・・コンポーネントフレームワーク
+* [icons](https://mui.com/material-ui/material-icons/)・・・アイコン
 * [swr](https://swr.vercel.app/ja)・・・キャッシュhooks
 * [axios](https://axios-http.com/)・・・httpクライアント
 * [swr](https://mswjs.io/)・・・APIモック
 * [story-book](https://storybook.js.org/)・・・コンポーネントのカタログ化
 
+レイアウト参考
+https://mui.com/material-ui/api/box/
 
 # 3.ディレクトリ
 * [デザインパターン](https://zenn.dev/morinokami/books/learning-patterns-1/viewer/presentational-container-pattern)・・・コンテナ・プレゼンテーションパターン
