@@ -9,12 +9,14 @@ type Res = {
   message_id: string
 }
 
+const timeoutMilliSec = 1000 * 60
+
 const ServerSentEventView: React.FC = () => {
 
   const onClickExport = () => {
     const eventSource = new EventSourcePolyfill("url", {
       // https://github.com/Yaffle/EventSource/issues/143
-      heartbeatTimeout: 120000,
+      heartbeatTimeout: timeoutMilliSec,
     });
     eventSource.onmessage = (event) => {
       const res = JSON.parse(event.data) as Res
