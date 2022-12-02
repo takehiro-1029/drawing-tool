@@ -1,10 +1,5 @@
 import { EventSourcePolyfill } from 'event-source-polyfill';
-
-type Res = {
-  message_m: string
-  staff_id: string
-  message_id: string
-}
+import { MessageModel } from "~/models/Message.model";
 
 const sseUrl = "baseurl"
 const timeoutMilliSec = 1000 * 120
@@ -18,8 +13,8 @@ export const useServerSentEvent = () => {
       heartbeatTimeout: timeoutMilliSec,
     });
     eventSource.onmessage = (event) => {
-      const res = JSON.parse(event.data) as Res
-      console.log(res)
+      const res = JSON.parse(event.data) as MessageModel
+      console.log(res);
     };
     eventSource.onerror = (err) => {
       console.error("EventSource failed:", err);
