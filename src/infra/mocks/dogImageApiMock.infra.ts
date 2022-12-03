@@ -7,7 +7,7 @@ export const dogImageApiHandlers = [
       ctx.status(200),
       ctx.json<GetDogImageRes>({
         status: "200",
-        message: "https://images.dog.ceo//breeds//retriever-golden//n02099601_1580.jpg",
+        message: "https://images.dog.ceo/breeds/retriever-golden/n02099601_1580.jpg",
       })
     )
   ),
