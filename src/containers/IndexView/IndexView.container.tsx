@@ -17,6 +17,9 @@ const IndexView: React.FC = () => {
   const transServerSentEventView = () => {
     nav(routePathMap.server_sent_event.path, { replace: true });
   }
+  const transWebSocketView = () => {
+    nav(routePathMap.web_socket.path, { replace: true });
+  }
 
   return (
     <Box>
@@ -32,6 +35,9 @@ const IndexView: React.FC = () => {
         </Button>
         <Button variant="outlined" endIcon={<SendIcon />} onClick={transServerSentEventView}>
           server sent event
+        </Button>
+        <Button variant="text" endIcon={<SendIcon />} onClick={transWebSocketView}>
+          web socket
         </Button>
       </Stack>
     </Box >
