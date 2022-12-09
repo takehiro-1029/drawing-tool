@@ -13,6 +13,9 @@ export const routePathMap = {
    // SERVER SENT EVENT
   server_sent_event: { path: "/sse" },
 
+  // WEB SOCKET
+  web_socket: { path: "/ws" },
+
 } as const;
 
 export type RoutesName = keyof typeof routePathMap;

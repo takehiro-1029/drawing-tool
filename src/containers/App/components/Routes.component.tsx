@@ -7,6 +7,7 @@ const IndexView = lazy(() => import("~/containers/IndexView/IndexView.container"
 const DrawView = lazy(() => import("~/containers/DrawView/DrawView.container"));
 const ShowView = lazy(() => import("~/containers/ShowView/ShowView.container"));
 const ServerSentEventView = lazy(() => import("~/containers/ServerSentEventView/ServerSentEventView.container"));
+const WebSocketView = lazy(() => import("~/containers/WebSocketView/WebSocketView.container"));
 
 // https://atsu-developer.net/266/
 export const Routes: React.FC = () => (
@@ -16,6 +17,7 @@ export const Routes: React.FC = () => (
       <Route {...routePathMap.draw} element={<DrawView />} />
       <Route {...routePathMap.show} element={<ShowView />} />
       <Route {...routePathMap.server_sent_event} element={<ServerSentEventView />} />
+      <Route {...routePathMap.web_socket} element={<WebSocketView />} />
     </ReactRouterRoutes>
   </Suspense>
 );
