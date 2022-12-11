@@ -43,6 +43,7 @@ yarn storybook
 * [swr](https://mswjs.io/)・・・APIモック
 * [story-book](https://storybook.js.org/)・・・コンポーネントのカタログ化
 * [sevent-source-polyfill](https://www.npmjs.com/package/event-source-polyfill)・・・Server-sent events
+* [websocket-ts](https://www.npmjs.com/package/websocket-ts)・・・websocket
 
 レイアウト参考
 https://mui.com/material-ui/api/box/
