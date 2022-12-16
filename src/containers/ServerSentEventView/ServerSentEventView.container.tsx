@@ -1,5 +1,4 @@
 import React from "react"
-import '~/App.css'
 import { Box, Button } from "@mui/material";
 import { useServerSentEvent } from "~/infra/serverSentEvent.infra";
 

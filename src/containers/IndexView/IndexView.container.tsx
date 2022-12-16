@@ -1,5 +1,4 @@
 import React from "react"
-import '~/App.css'
 import { useNavigate } from "react-router-dom";
 import { Button, Box, Stack } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
